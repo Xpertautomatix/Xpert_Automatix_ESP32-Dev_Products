@@ -1,0 +1,39 @@
+/* 
+ 
+Serial_to_SerialBT Test
+ 
+ 
+For the Xpert Automatix ESP32 Development Board.
+ 
+created Sep 2024
+by XpertAutomatix
+ 
+This example code is in the public domain.
+ 
+ https://github.com/Xpertautomatix/Products
+ 
+*/
+
+#include <BluetoothSerial.h>
+
+#if !defined(CONFIG_BT_ENABLED) || !defined(CONFIG_BLUEDROID_ENABLED)
+#error Bluetooth is not enabled! Please run `make menuconfig` to and enable it
+#endif
+
+BluetoothSerial SerialBT;
+
+void setup() {
+ Serial.begin(115200);
+ SerialBT.begin("ESP32_Xpert_Automatix");                           //Bluetooth device name
+ Serial.println("The device started, now you can pair it with bluetooth!");
+}
+
+void loop() {
+ if (Serial.available()) {
+   SerialBT.write(Serial.read()); // Serial send to SerialBT
+ }
+ if (SerialBT.available()) {
+   Serial.write(SerialBT.read()); // SerialBT send to Serial
+ }
+ delay(20);
+}
