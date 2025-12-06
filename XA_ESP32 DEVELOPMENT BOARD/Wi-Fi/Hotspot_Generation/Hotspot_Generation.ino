@@ -1,6 +1,6 @@
 #include <ESP8266WiFi.h>
 
-const char *ssid = "Vignesh_KPR";  // Hotspot name
+const char *ssid = "XpertAutomatix";  // Hotspot name
 const char *password = "12345678";    // Hotspot password (min. 8 characters)
 
 void setup() {
